@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # (C) Marco Vedovati <mv@sba.lat> - 2020
 # SPDX-License-Identifier: Apache-2.0
 #
 # Namecheap Dynamic DNS updater
 #
-set -euo pipefail
+set -eo pipefail
 
 declare -r myName="nc-ddns"
 declare configFile=
@@ -95,10 +95,10 @@ ip_is_cached() {
 		read -r cachedIp < "$cachedIpFile" || true
 
 		if [ -z "$cachedIp" ]; then
-            echo "WARN: cached IP file content is invalid"
-        else
-		    info "cached IP: $cachedIp"
-        fi
+			echo "WARN: cached IP file content is invalid"
+		else
+			info "cached IP: $cachedIp"
+		fi
 	else
 		echo "WARN: missing DDNS cached IP file: \"$cachedIpFile\""
 	fi
